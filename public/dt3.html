@@ -2,52 +2,77 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>serverside</title>
-    <link rel="stylesheet" href="./css/output.css">
-    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css" />
-    <style>
-        .dataTables_filter {margin-bottom: 10px;}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>serverside</title>
+  <link rel="stylesheet" href="./css/output.css">
+  <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <style>
+    .dataTables_filter {
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 
-<body class="h-screen">
-    <div class="bg-gray-200 text-xs font-rale font-hairline m-5 p-2 rounded">
-        <table id="tablaArticulos" class="display bg-gray-400 text-sm" style="width:100%">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>codigo</th>
-                    <th>articulo</th>
-                    <th>categoria</th>
-                    <th>ubicación</th>
-                    <th>proveedor</th>
-                    <th>medida1</th>
-                    <th>precio1</th>
-                    <th>medida2</th>
-                    <th>precio2</th>
-                    <th>medida3</th>
-                    <th>precio3</th>
-                </tr>
-            </thead>
-        </table>
+<body class="bg-gray-200 items-center justify-center h-screen">
+  <div class="bg-gray-200 text-xs font-rale font-hairline m-5 p-2 rounded">
+    <table id="tablaArticulos" class="display bg-gray-400 text-sm" style="width:100%">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>codigo</th>
+          <th>articulo</th>
+          <th>categoria</th>
+          <th>ubicación</th>
+          <th>proveedor</th>
+          <th>medida1</th>
+          <th>precio1</th>
+          <th>medida2</th>
+          <th>precio2</th>
+          <th>medida3</th>
+          <th>precio3</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="modal h-screen w-full fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50 hidden">
+    <!-- modal -->
+    <div class="bg-white rounded shadow-lg w-1/3">
+      <!-- modal header -->
+      <div class="border-b px-4 py-2 flex justify-between items-center">
+        <input type="text" id="idart" class="w-5">
+        <h3 class="text-blue-600" id="mod_articulo">Articulo</h3>
+        <button class="text-black close-modal"><i class="fas fa-times"></i></button>
+      </div>
+      <!-- modal body -->
+      <div class="p-3">
+        <form method="post" action="" enctype="multipart/form-data">
+          <div class="card">
+              <img id="img" class="card-img-top img-thumbnail mb-2" src="image/template/foto.jpg"
+                style="height: 150px; width: 275;">
+            <div class="card-body">
+              <div class="form-group">
+                <input type="file" class="form-control-file" name="image" id="image">
+                <input type="hidden" id="idfoto">
+              </div>
+              <div class="flex justify-end items-center border-t p-3 mt-2">
+                <input type="button"
+                  class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-white mr-1 upload w-full" value="Subir">
+              </div>
+            </div>
+          </div>
+        </form>
+        <button
+          class="bg-gray-600 hover:bg-gray-700 px-3 py-1 rounded text-white mr-1 close-modal w-full">Cerrar</button>
+      </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
-    <script>
-        $(document).ready(function(){
-           $("#tablaArticulos").DataTable({
-              "processing": true,
-              "serverSide": true,
-              "sAjaxSource": "ServerSide/serversideUsuarios.php",
-              "columnDefs":[{
-                  "data":null
-              }]   
-           }); 
-        });
-    </script> 
+  </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+  <script src="js/dt3.js"></script>
 </body>
 
 </html>
